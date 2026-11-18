@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopover1"
+		title="GenAI Recommendation"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Right"
+		showHeader="true"
+        initialFocus="email">
+		<MessageStrip
+            id="ms"
+            text="{BaseModel>/GenAIRecommendationText}"
+            type="Information"
+            showCloseButton="false"
+            visible ="false"
+            class="sapUiSmallMarginTop" />
+	</Popover>
+</core:FragmentDefinition>

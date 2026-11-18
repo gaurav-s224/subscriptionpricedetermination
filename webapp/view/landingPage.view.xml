@@ -1,0 +1,922 @@
+<mvc:View controllerName="subscriptionpricedetermination.controller.landingPage"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:l="sap.ui.layout"
+    xmlns:c="sap.f"
+    xmlns:card="sap.f.cards">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <IconTabBar
+            id="idIconTabBarNoIcons"
+            class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter text="Subscription Profit" key="profit">
+                    <Wizard
+                        id="CreateProductWizard"
+                        class="sapUiResponsivePadding--header"
+                        width="100%"
+                        finishButtonText="Calculate"
+                        complete="onActDiscCalc"
+                    >
+                        <WizardStep id="InitialFields" title="Offering Selection" validated="true" complete=".onStep2">
+                            <!-- <IconTabBar mode="Inline">
+                                <items>
+                                    <IconTabFilter key="offer" text="Offering Selection"> -->
+                                        <f:Form id="FormDisplay354wideDual"
+                                editable="true">
+                                <f:layout>
+                                    <f:ResponsiveGridLayout
+                                        labelSpanXL="4"
+                                        labelSpanL="3"
+                                        labelSpanM="4"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="0"
+                                        emptySpanL="4"
+                                        emptySpanM="0"
+                                        emptySpanS="0"
+                                       columnsXL="2"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false" />
+                                </f:layout>
+                                <f:formContainers>
+                                    <f:FormContainer title="Organisation Details">
+                                        <f:formElements>
+                                            <f:FormElement label="Sales Organisation" class="sapUiTinyMarginTop">
+                                                <f:fields>
+                                                    <Input
+                                                        id="salesOrg"
+                                                        showSuggestion="false"
+                                                        showValueHelp="true"
+                                                        valueHelpRequest=".onValueHelpRequest">
+                                                        <suggestionItems>
+                                                            <core:Item text="{BaseModel>SalesOrganizationName}" key="{BaseModel>SalesOrganizationName}" description="Sales" />
+                                                            <!-- <core:Item text="{BaseModel>SalesOrganization}" /> -->
+                                                        </suggestionItems>
+                                                    </Input>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Distribution Channel">
+                                                <f:fields>
+                                                    <!-- <Select items="{/A_SalesOrganizationText}" forceSelection="false">
+                                                        <core:Item key="{SalesOrganization}" text="{SalesOrganization}"></core:Item>
+                                                    </Select> -->
+                                                    <Input
+                                                        id="distributionChannel"
+                                                        showSuggestion="false"
+                                                        showValueHelp="true"
+                                                        enabled="false"
+                                                        valueHelpRequest=".onDistributionValueHelp">
+                                                        <suggestionItems>
+                                                            <core:Item text="{Name}" />
+                                                        </suggestionItems>
+                                                    </Input>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Division">
+                                                <f:fields>
+                                                    <Input
+                                                        id="division"
+                                                        showSuggestion="false"
+                                                        showValueHelp="true"
+                                                        enabled="false"
+                                                        valueHelpRequest=".onDivisionValueHelp">
+                                                        <suggestionItems>
+                                                            <core:Item text="{Name}" />
+                                                        </suggestionItems>
+                                                    </Input>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Plant">
+                                                <f:fields>
+                                                    <Input
+                                                        id="plantList"
+                                                        showSuggestion="false"
+                                                        showValueHelp="true"
+                                                        enabled="false"
+                                                        valueHelpRequest=".onPlantValueHelp">
+                                                        <suggestionItems>
+                                                            <core:Item text="{SalesOrganization}" />
+                                                        </suggestionItems>
+                                                    </Input>
+                                                </f:fields>
+                                            </f:FormElement>
+                                        </f:formElements>
+                                    </f:FormContainer>
+                                    <f:FormContainer title="Customer &amp; Offering Details">
+                                        <f:formElements>
+                                            <f:FormElement label="Customer ID">
+                                                <f:fields>
+                                                    <Input
+                                                        id="custId"
+                                                        showSuggestion="false"
+                                                        showValueHelp="true"
+                                                        enabled="false"
+                                                        valueHelpRequest=".onCustomerValueHelp">
+                                                        <suggestionItems>
+                                                            <core:Item text="{Name}" />
+                                                        </suggestionItems>
+                                                    </Input>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Customer Name">
+                                                <f:fields>
+                                                    <Text id="custName" text="{}"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Offering ID">
+                                                <f:fields>
+                                                    <Input
+                                                        id="offerId"
+                                                        showSuggestion="false"
+                                                        showValueHelp="true"
+                                                        enabled="false"
+                                                        valueHelpRequest=".onOfferingValueHelp">
+                                                        <suggestionItems>
+                                                            <core:Item text="{Name}" />
+                                                        </suggestionItems>
+                                                    </Input>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Offering Name">
+                                                <f:fields>
+                                                    <Text id="offeringName" text="{}"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Unit of Purchase">
+                                                <f:fields>
+                                                    <Input type="Number" enabled="false" id="unitOfPurchase"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                        </f:formElements>
+                                    </f:FormContainer>
+                                </f:formContainers>
+                            </f:Form>
+                                    <!-- </IconTabFilter>
+                                    <IconTabFilter key="config" text="Offering Configuration"> -->
+                                        <Table id="offeringsTable" width="100%" items="{path:'BaseModel>/OfferTable', sorter: [{ path: 'OPTIONAL', descending: false, group: 'true' }]}" growing="true" growingThreshold="5">
+                                <headerToolbar>
+                                        <OverflowToolbar >
+                                            <Title text="Configure Offering"/>
+                                        </OverflowToolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                    <Column >
+                                    <Text text="Product Name"></Text>
+                                    </Column>
+                                    <Column >
+                                    <Text text="Product ID"></Text>
+                                    </Column>
+                                    <Column >
+                                    <Text text="Quantity"></Text>
+                                    </Column>
+                                    <Column >
+                                    <Text text="Select"></Text>
+                                    </Column>
+                                    <Column>
+                                    <Text text="Configure"></Text>
+                                    </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem vAlign="Middle">
+                                            <cells>
+                                                <Text text="{BaseModel>maktx}" />
+                                                <Text text="{BaseModel>matnr}" />
+                                                <Text text="{BaseModel>QUANT_VALUE}" />
+                                                <CheckBox selected="{= ${BaseModel>OPTIONAL} === 'X' ? false : true}" editable="{= ${BaseModel>OPTIONAL} === 'X' ? true : false}" />
+                                                <core:Icon src="sap-icon://wrench" press="onConfigureProduct"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                    </Table>
+                                    <!-- </IconTabFilter>
+                                </items>
+                            </IconTabBar> -->
+                             
+                            <!-- <Table id="offeringTable">
+                                <headerToolbar>
+                                    <OverflowToolbar >
+                                        <Title text="Configure Offering"/>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                            </Table> -->
+                            <!-- <HBox height="50%"> -->
+                                
+                                <!-- </HBox> -->
+                        </WizardStep>
+                        <WizardStep
+                            id="OfferingSelectionStep"
+                            title="Cost Inputs"
+                            validated="true"
+                        >
+                            <f:Form id="FormChange354"
+                                editable="true">
+                                <!-- <f:title>
+                                    <core:Title text="Address" />
+                                </f:title> -->
+                                <f:layout>
+                                    <f:ResponsiveGridLayout
+                                        labelSpanXL="4"
+                                        labelSpanL="3"
+                                        labelSpanM="3"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="4"
+                                        emptySpanL="4"
+                                        emptySpanM="4"
+                                        emptySpanS="0"
+                                        columnsXL="1"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false" />
+                                </f:layout>
+                                <f:formContainers>
+                                    <f:FormContainer>
+                                        <f:formElements>
+                                            <f:FormElement label="Selected Offering Name">
+                                                <f:fields>
+                                                    <Text text="" id="selectedOffering"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Depreciation for Hardware">
+                                                <f:fields>
+                                                    <Input id="hwDepr" type="Number" value="5"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Yearly Inflation Value">
+                                                <f:fields>
+                                                    <Input id="yrInflate" type="Number" value="2"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Offering Term (in years)">
+                                                <f:fields>
+                                                    <Input id="offeringTerm" type="Number"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Billing Frequency">
+                                                <f:fields>
+                                                    <Select selectedKey="Yearly" enabled="true">
+                                                        <core:Item key="Yearly" text="Yearly" />
+                                                        <core:Item key="Monthly" text="Monthly" />
+                                                    </Select>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Consider Usage based Billing?">
+                                                <f:fields>
+                                                 <HBox justifyContent="Start" alignItems="Stretch">
+                                                   <VBox>
+                                                    <RadioButtonGroup id="rbg3" selectedIndex="-1" select="onUsageBilling" columns="5" class="sapUiMediumMarginBottom">
+                                                        <RadioButton id="RB3-1" text="Yes" />
+                                                        <RadioButton id="RB3-2" text="No" />
+                                                    </RadioButtonGroup>
+                                                    </VBox>
+                                                    <VBox class="sapUiMediumMarginEnd">
+                                                    <!-- <core:Icon id = "info" visible ="false" src="sap-icon://message-information" class="sapUiTinyMarginTop" tooltip ="{ViewGenAIModel>/iconTooltipText}" useIconTooltip="true" press="onPressInformation"/>    -->
+                                                    <Button iconDensityAware="false" icon="sap-icon://da-2" text="GenAI" id="info" visible ="false" press="onPressInformation" />
+                                                    </VBox>
+                                                    </HBox>
+                                                </f:fields>
+                                             
+                                            </f:FormElement>
+                                            <f:FormElement id="msid">
+                                              <f:fields>
+                                            
+                                              </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement id="exp" label="Expected Usage based Billing" visible="false">
+                                                <f:fields>
+                                                    <RadioButtonGroup id="rbg4" selectedIndex="-1" editable="true" columns="5" class="sapUiMediumMarginBottom">
+                                                        <RadioButton id="RB4-1" text="Low" />
+                                                        <RadioButton id="RB4-2" text="Medium" />
+                                                        <RadioButton id="RB4-3" text="High" />
+                                                    </RadioButtonGroup>
+                                                </f:fields>
+                                            </f:FormElement>
+                                        </f:formElements>
+                                    </f:FormContainer>
+                                </f:formContainers>
+                            </f:Form>
+                        </WizardStep>
+
+                        <WizardStep
+                            id="CostInputsStep"
+                            validated="true"
+                            title="Profitability Targets"
+                            complete="onPressReview"
+                        >
+                            <f:Form id="screen3"
+                                editable="true">
+                                <!-- <f:title>
+                                    <core:Title text="Address" />
+                                </f:title> -->
+                                <f:layout>
+                                    <f:ResponsiveGridLayout
+                                        labelSpanXL="4"
+                                        labelSpanL="3"
+                                        labelSpanM="3"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="4"
+                                        emptySpanL="4"
+                                        emptySpanM="4"
+                                        emptySpanS="0"
+                                        columnsXL="1"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false" />
+                                </f:layout>
+                                <f:formContainers>
+                                    <f:FormContainer>
+                                        <f:formElements>
+                                            <f:FormElement label="Org Level Profitability %">
+                                                <f:fields>
+                                                    <Input id="orgProfit"/>
+                                                    <!-- <Slider value="30" width="100%"
+                                                        min="0" max="100"
+                                                        showAdvancedTooltip="true"
+                                                        showHandleTooltip="false"
+                                                        inputsAsTooltips="true"
+                                                        class="sapUiMediumMarginBottom" /> -->
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Year Wise Profitability Target % (Yearly)">
+                                                <f:fields>
+                                                    <Input id="yearlyProfit" />
+                                                    <!-- <Slider value="50" width="100%"
+                                                        min="0" max="100"
+                                                        showAdvancedTooltip="true"
+                                                        showHandleTooltip="false"
+                                                        inputsAsTooltips="true"
+                                                        class="sapUiMediumMarginBottom" /> -->
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <!-- <f:FormElement label="Year wise Profitability target % (Year 2)">
+                                                <f:fields>
+                                                    <Input value="{SupplierName}"/>
+                                                </f:fields>
+                                            </f:FormElement>
+                                            <f:FormElement label="Year wise Profitability target % (Year 3)">
+                                                <f:fields>
+                                                    <Input value="{SupplierName}"/>
+                                                </f:fields>
+                                            </f:FormElement> -->
+                                        </f:formElements>
+                                    </f:FormContainer>
+                                </f:formContainers>
+                            </f:Form>
+                        </WizardStep>
+
+                        <WizardStep
+                            id="ProfitabilityChargesStep"
+                            validated="true"
+                            title="Price Recommendations"
+                            activate="ProfitabilityChargesActivation"
+                        >
+                        <MessageStrip
+                            id="errorMsg"
+                            text="Maximum Permissible Discount is negative. Kindly check all the fields!"
+                            type="Error"
+                            showIcon="true"
+                            showCloseButton="true"
+                            visible="false"
+                            class="sapUiMediumMarginBottom"/>
+                        <IconTabBar>
+                            <items>
+                                <IconTabFilter text="Yearly">
+                                    <!-- <f:Form id="screen4"
+                                        editable="true">
+                                        
+                                        <f:layout>
+                                            <f:ResponsiveGridLayout
+                                                labelSpanXL="4"
+                                                labelSpanL="3"
+                                                labelSpanM="3"
+                                                labelSpanS="12"
+                                                adjustLabelSpan="false"
+                                                emptySpanXL="4"
+                                                emptySpanL="4"
+                                                emptySpanM="4"
+                                                emptySpanS="0"
+                                                columnsXL="1"
+                                                columnsL="1"
+                                                columnsM="1"
+                                                singleContainerFullSize="false" />
+                                        </f:layout>
+                                        <f:formContainers>
+                                            <f:FormContainer>
+                                                <f:formElements>
+                                                    <f:FormElement label="Offering Net Price">
+                                                        <f:fields>
+                                                            <Input id="offeringPrice1" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Offering Target Price">
+                                                        <f:fields>
+                                                            <Input id="targetPrice1" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Maximum Permissible Discount">
+                                                        <f:fields>
+                                                            <Input id="maxDiscount1" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Actual Discount">
+                                                        <f:fields>
+                                                            <Input id="actualDisc" submit="onActDiscCalc" liveChange="onSetDiscount"/>
+                                                            <Button iconDensityAware="false" class="genAiBtn" icon="sap-icon://da-2" text="GenAI" id="info1" visible ="true" press="onPressDiscountInfo" />
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement>
+                                                        <MessageStrip
+                                                                id="ms1"
+                                                                text="{BaseModel>/GenAiDiscountText}"
+                                                                type="Information"
+                                                                showCloseButton="true"
+                                                                visible ="false"
+                                                                class="sapUiSmallMarginTop"
+                                                            />
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Sales Price after Actual Discount">
+                                                        <f:fields>
+                                                            <Input id="salesPrice1" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Predicted Profitability after Actual Discount">
+                                                        <f:fields>
+                                                            <Input id="predProfit1" enabled="false" submit="onActDiscCalc"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                </f:formElements>
+                                            </f:FormContainer>
+                                        </f:formContainers>
+                                    </f:Form> -->
+
+                                    <!-- <c:Card class="sapUiMediumMargin" width="300px">
+                                        <c:header>
+                                            <card:Header
+                                                title="Buy bus ticket on-line"
+                                                subtitle="Buy a single-ride ticket for a date"
+                                                iconSrc="sap-icon://bus-public-transport" />
+                                        </c:header>
+                                        <c:content>
+                                            <HBox>
+                                                <VBox>
+                                                    <Label text="Offering Net Price"/>
+                                                    <Label id="offeringPrice"/>
+                                                </VBox>
+                                                <core:Icon icon="sap-icon://tag"></core:Icon>
+                                            </HBox>
+                                        </c:content>
+                                    </c:Card> -->
+                                    <!-- <Toolbar>
+                                        <Label text="Price Recommendations"></Label>
+                                        <ToolbarSpacer />
+                                        <Button text="Recalculate Price" press="onPressReview" class="customBtn customClr"></Button>
+                                    </Toolbar> -->
+                                    <HBox>
+                                    <VBox class="offeringSection" width="73%">
+                                        <Text text="Offering Price" class="offeringSectionTitle"/>
+                                    <HBox width="100%">
+                                        <c:Card class="offeringCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Offering Net Price" class="offeringCardLabel" />
+                                                        <Text id="offeringPrice" class="offeringCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://tag" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+
+                                        <c:Card class="sapUiTinyMarginBegin offeringCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Offering Target Price" class="offeringCardLabel" />
+                                                        <Text id="targetPrice" class="offeringCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://target-group" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+                                    </HBox>
+                                    <HBox justifyContent="SpaceBetween">
+                                    <Text text="Discount" class="offeringSectionTitle"/>
+                                    <VBox>
+                                        <Button iconDensityAware="false" class="genAiBtn" icon="sap-icon://da-2" text="GenAI" id="info1" visible ="true" press="onPressDiscountInfo" />
+                                    </VBox>
+                                    </HBox>
+                                    <HBox>
+                                        <c:Card class="discountCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Maximum Permissible Discount" class="discountCardLabel" />
+                                                        <Text id="maxDiscount" class="discountCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://waiver" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+
+                                        <c:Card class="sapUiTinyMarginBegin discountSliderCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <!-- Label -->
+                                                    <VBox>
+                                                        <Text text="Actual Discount" class="discountSliderLabel" />
+                                                    <!-- Numeric Value -->
+                                                        <Input id="actualDisc"
+                                                            textAlign="End"
+                                                            editable="true"
+                                                            class="discountSliderValue"
+                                                            submit="onActDiscCalc"
+                                                            liveChange="onSetDiscount" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://waiver" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+                                    </HBox>
+                                    <Text text="Sales Price After Discount" class="offeringSectionTitle"/>  
+                                    <HBox>
+                                        <c:Card class="offeringCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Sales Price After Actual Discount" class="offeringCardLabel" />
+                                                        <Text id="salesPrice" class="offeringCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://tag" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+                                        <c:Card class="sapUiTinyMarginBegin offeringCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Predicted Profitability After Actual Discount" class="offeringCardLabel" />
+                                                        <Text id="predProfit" class="offeringCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://opportunity" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+                                    </HBox> 
+                                    </VBox>
+
+                                    <!-- Right Section: Customer Details -->
+                                        <VBox class="sapUiTinyMarginTop sapUiSmallMarginBegin" width="100%">
+                                            <Text text="Master Data Details" class="customerDetailsTitle" />
+
+                                            <c:Card class="customerDetailsCard" width="100%">
+                                                <c:content>
+                                                    <VBox width="100%" class="sapUiSmallMarginBegin">
+                                                        <!-- Sales Organisation -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://company-view" size="1.5rem" class="customerDetailsIcon" color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Sales Organisation" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/salesOrgName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Distribution Channel -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://building" size="1.5rem" class="customerDetailsIcon" color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Distribution Channel" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/distChannelName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Customer Name -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://customer" size="1.5rem" class="customerDetailsIcon"  color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Customer Name" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/custName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Offering Name -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://product" size="1.5rem" class="customerDetailsIcon"  color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Offering Name" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/offerName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Unit of Purchase -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTopBottom">
+                                                            <core:Icon src="sap-icon://numbered-text" size="1.5rem" class="customerDetailsIcon"  color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Unit of Purchase" class="customerDetailsLabel" />
+                                                                <Text text="1" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+                                                    </VBox>
+                                                </c:content>
+                                            </c:Card>
+                                        </VBox>
+
+                                    
+
+                                    </HBox>
+
+
+
+
+                                </IconTabFilter>
+                                <IconTabFilter text="Monthly">
+                                    <!-- <f:Form id="screen5"
+                                        editable="true">
+                                        <f:layout>
+                                            <f:ResponsiveGridLayout
+                                                labelSpanXL="4"
+                                                labelSpanL="3"
+                                                labelSpanM="3"
+                                                labelSpanS="12"
+                                                adjustLabelSpan="false"
+                                                emptySpanXL="4"
+                                                emptySpanL="4"
+                                                emptySpanM="4"
+                                                emptySpanS="0"
+                                                columnsXL="1"
+                                                columnsL="1"
+                                                columnsM="1"
+                                                singleContainerFullSize="false" />
+                                        </f:layout>
+                                        <f:formContainers>
+                                            <f:FormContainer>
+                                                <f:formElements>
+                                                    <f:FormElement label="Offering Net Price">
+                                                        <f:fields>
+                                                            <Input id="monthlyOfferingPrice" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Offering Target Price">
+                                                        <f:fields>
+                                                            <Input id="monthlyTargetPrice" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Maximum Permissible Discount">
+                                                        <f:fields>
+                                                            <Input id="monthlyMaxDiscount" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Actual Discount">
+                                                        <f:fields>
+                                                            <Input id="monthlyActualDisc" submit="onActDiscCalc" liveChange="onSetDiscount"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                    <f:FormElement label="Sales Price after Actual Discount">
+                                                        <f:fields>
+                                                            <Input id="monthlySalesPrice" enabled="false"/>
+                                                        </f:fields>
+                                                    </f:FormElement>
+                                                </f:formElements>
+                                            </f:FormContainer>
+                                        </f:formContainers>
+                                    </f:Form> -->
+
+
+                                <!-- <Toolbar>
+                                        <Label text="Price Recommendations"></Label>
+                                        <ToolbarSpacer />
+                                        <Button text="Recalculate Price" press="onPressReview" class="customBtn customClr"></Button>
+                                    </Toolbar> -->
+                                    <HBox>
+                                    <VBox class="offeringSection" width="73%">
+                                        <Text text="Offering Price" class="offeringSectionTitle"/>
+                                    <HBox width="100%">
+                                        <c:Card class="offeringCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Offering Net Price" class="offeringCardLabel" />
+                                                        <Text id="monthlyOfferingPrice" class="offeringCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://tag" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+
+                                        <c:Card class="sapUiTinyMarginBegin offeringCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Offering Target Price" class="offeringCardLabel" />
+                                                        <Text id="monthlyTargetPrice" class="offeringCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://target-group" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+                                    </HBox>
+                                    <HBox justifyContent="SpaceBetween">
+                                    <Text text="Discount" class="offeringSectionTitle"/>
+                                    <VBox>
+                                        <Button iconDensityAware="false" class="genAiBtn" icon="sap-icon://da-2" text="GenAI" id="info2" visible ="true" press="onPressDiscountInfo" />
+                                        <MessageStrip
+                                            id="ms2"
+                                            text="{BaseModel>/GenAiDiscountText}"
+                                            type="Information"
+                                            showCloseButton="true"
+                                            visible ="false"
+                                            class="sapUiSmallMarginTop"
+                                        />
+                                    </VBox>
+                                    </HBox>
+                                    <HBox>
+                                        <c:Card class="discountCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Maximum Permissible Discount" class="discountCardLabel" />
+                                                        <Text id="monthlyMaxDiscount" class="discountCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://waiver" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+
+                                        <c:Card class="sapUiTinyMarginBegin discountSliderCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <!-- Label -->
+                                                    <VBox>
+                                                        <Text text="Actual Discount" class="discountSliderLabel" />
+                                                    <!-- Numeric Value -->
+                                                        <Input id="monthlyActualDisc"
+                                                            textAlign="End"
+                                                            editable="true"
+                                                            class="discountSliderValue"
+                                                            submit="onActDiscCalc"
+                                                            liveChange="onSetDiscount" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://waiver" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+                                    </HBox>
+                                    <Text text="Sales Price After Discount" class="offeringSectionTitle"/>  
+                                    <HBox>
+                                        <c:Card class="offeringCard" width="400px">
+                                            <c:content>
+                                                <HBox width="100%" justifyContent="SpaceBetween" alignItems="Center">
+                                                    <VBox>
+                                                        <Text text="Sales Price After Actual Discount" class="offeringCardLabel" />
+                                                        <Text id="monthlySalesPrice" class="offeringCardValue" />
+                                                    </VBox>
+                                                    <HBox class="offeringCardIconBox" alignItems="Center" justifyContent="Center">
+                                                        <core:Icon src="sap-icon://tag" size="2rem" color="white" />
+                                                    </HBox>
+                                                </HBox>
+                                            </c:content>
+                                        </c:Card>
+                                    </HBox> 
+                                    </VBox>
+
+                                    <!-- Right Section: Customer Details -->
+                                        <VBox class="sapUiTinyMarginTop sapUiSmallMarginBegin" width="100%">
+                                            <Text text="Master Data Details" class="customerDetailsTitle" />
+
+                                            <c:Card class="customerDetailsCard" width="100%">
+                                                <c:content>
+                                                    <VBox width="100%" class="sapUiSmallMarginBegin">
+                                                        <!-- Sales Organisation -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://company-view" size="1.5rem" class="customerDetailsIcon" color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Sales Organisation" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/salesOrgName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Distribution Channel -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://building" size="1.5rem" class="customerDetailsIcon" color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Distribution Channel" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/distChannelName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Customer Name -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://customer" size="1.5rem" class="customerDetailsIcon"  color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Customer Name" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/custName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Offering Name -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTop">
+                                                            <core:Icon src="sap-icon://product" size="1.5rem" class="customerDetailsIcon"  color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Offering Name" class="customerDetailsLabel" />
+                                                                <Text text="{BaseModel>/offerName}" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+
+                                                        <!-- Unit of Purchase -->
+                                                        <HBox alignItems="Center" justifyContent="Start" class="customerDetailsRow sapUiSmallMarginTopBottom">
+                                                            <core:Icon src="sap-icon://numbered-text" size="1.5rem" class="customerDetailsIcon"  color="#0A6ED1"/>
+                                                            <VBox class="sapUiTinyMarginBegin">
+                                                                <Text text="Unit of Purchase" class="customerDetailsLabel" />
+                                                                <Text text="1" class="customerDetailsValue" />
+                                                            </VBox>
+                                                        </HBox>
+                                                    </VBox>
+                                                </c:content>
+                                            </c:Card>
+                                        </VBox>
+
+                                    
+
+                                    </HBox>
+
+
+
+
+
+
+
+                                </IconTabFilter>
+                            </items>
+                        </IconTabBar>
+                            
+                        <Toolbar class="sapUiTinyMarginTopBottom">
+                                <ToolbarSpacer />
+                                <Button text="Recalculate Price" press="onPressReview" class="customBtn customClr"></Button>
+                            </Toolbar>                    
+                        </WizardStep>
+
+                        <!-- <WizardStep
+                            id="PriceRecommendationsStep"
+                            activate="priceActivate"
+                            complete="priceComplete"
+                            validated="true"
+                            title="Price Recommendations"
+                        >
+                            <form:SimpleForm
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                            >
+                                <Label text="Offering List Price" />
+                                <Input width="50%" />
+                                <Label text="Target Offering Price" />
+                                <Input width="50%" />
+                                <Label text="Maximum Permissible Discount " />
+                                <Input width="50%" />
+                                <Label text="Actual Discount" />
+                                <Input width="50%" />
+                                <Label text="Price after discount" />
+                                <Input width="50%" />
+                                <Label
+                                    text="Predicted Profitability after discount"
+                                />
+                                <Input width="50%" />
+                            </form:SimpleForm>
+                        </WizardStep> -->
+                        <!-- <footer> -->
+                            
+                        <!-- </footer> -->
+                        </Wizard>
+                        </IconTabFilter>
+                        <!-- <IconTabFilter text="Offering Profit" key="attachments">
+                            <core:Fragment fragmentName="subscriptionpricedetermination.view.fragments.UseCase2" type="XML" />
+                        </IconTabFilter> -->
+                    </items>
+                </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>

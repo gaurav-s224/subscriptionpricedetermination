@@ -1,0 +1,9 @@
+node_modules/
+dist/
+mta_archives/
+.mtabuild/
+deploy-main/
+*.mtar
+*.log
+.DS_Store
+deployer/

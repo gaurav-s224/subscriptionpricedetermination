@@ -1,0 +1,14 @@
+{
+  "name": "subscriptionpricedetermination-test",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "fiori run --open index.html",
+    "start-local": "fiori run --open index.html",
+    "build": "ui5 build --all --clean-dest --dest dist"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4",
+    "@sap/ux-ui5-tooling": "^1"
+  }
+}

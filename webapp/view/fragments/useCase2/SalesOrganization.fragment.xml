@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="salesDialog"
+		title="Sales Organizations"
+		items="{
+			path: 'BaseModel>/SalesOrg',
+			filters : [
+            { path : 'Language', operator : 'EQ', value1 : 'EN'}
+        		]
+			}"
+		search=".onSearch"
+		confirm=".onValueHelpClose2">
+		<StandardListItem
+			icon=""
+			iconDensityAware="false"
+			iconInset="false"
+			title="{BaseModel>SalesOrganizationName}"
+			description="{BaseModel>SalesOrganization}" />
+	</SelectDialog>
+</core:FragmentDefinition>

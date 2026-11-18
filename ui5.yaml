@@ -1,0 +1,33 @@
+specVersion: "4.0"
+metadata:
+  name: subscriptionpricedetermination
+type: application
+
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: true
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+
+        backend:
+          - path: /sap
+            destination: T4X
+
+          - path: /odata/v4/calculate
+            destination: SubscriptionPrice_CAP
+
+          - path: /get_business_percentage
+            destination: Contract_Profitability_GenAI_API
+
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300

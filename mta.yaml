@@ -1,0 +1,60 @@
+_schema-version: "3.2"
+
+ID: subscriptionpricedetermination-test
+version: 0.0.6
+description: Subscription Price Determination Test
+
+modules:
+
+  - name: subscriptionpricedetermination-test-approuter
+    type: approuter.nodejs
+    path: approuter
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+    requires:
+      - name: subscriptionpricedetermination-test-html5-runtime
+      - name: subscriptionpricedetermination-test-xsuaa
+      - name: subscriptionpricedetermination-test-destination
+      - name: subscriptionpricedetermination-test-connectivity
+
+  - name: subscriptionpricedetermination-test-deployer
+    type: com.sap.application.content
+    path: deployer
+    requires:
+      - name: subscriptionpricedetermination-test-html5-repo
+        parameters:
+          content-target: true
+
+resources:
+
+  - name: subscriptionpricedetermination-test-connectivity
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: connectivity
+      service-plan: lite
+
+  - name: subscriptionpricedetermination-test-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+
+  - name: subscriptionpricedetermination-test-html5-repo
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+
+  - name: subscriptionpricedetermination-test-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+
+  - name: subscriptionpricedetermination-test-xsuaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json

@@ -1,0 +1,414 @@
+{
+    "_version": "1.53.0",
+    "sap.app": {
+        "id": "subscriptionpricedetermination",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.3"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.13.4",
+            "toolsId": "22c527dc-059d-461b-a238-5b4bae10749c"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "sap/opu/odata/sap/API_SALESORGANIZATION_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "calculate": {
+                "uri": "odata/v4/calculate/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/calculate/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            },
+            "DISTRIBUTIONCHANNEL_CDS_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FDISTRIBUTIONCHANNEL_C_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/DISTRIBUTIONCHANNEL_CDS/DISTRIBUTIONCHANNEL_CDS_Annotation.xml"
+                }
+            },
+            "DISTRIBUTIONCHANNEL_CDS": {
+                 "uri": "sap/opu/odata/sap/ZDISTRIBUTIONCHANNEL_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "DISTRIBUTIONCHANNEL_CDS_Annotation"
+                    ],
+                    "localUri": "localService/DISTRIBUTIONCHANNEL_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "DIVISIONLIST_CDS_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FDIVISIONLIST_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/DIVISIONLIST_CDS/DIVISIONLIST_CDS_Annotation.xml"
+                }
+            },
+            "DIVISIONLIST_CDS": {
+                 "uri": "sap/opu/odata/sap/ZDIVISIONLIST_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "DIVISIONLIST_CDS_Annotation"
+                    ],
+                    "localUri": "localService/DIVISIONLIST_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "PLANTLIST_CDS_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FPLANTLIST_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/PLANTLIST_CDS/PLANTLIST_CDS_Annotation.xml"
+                }
+            },
+            "PLANTLIST_CDS": {
+                "uri": "sap/opu/odata/sap/ZPlantList_cds/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "PLANTLIST_CDS_Annotation"
+                    ],
+                    "localUri": "localService/PLANTLIST_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "CUSTOMERLIST_CDS_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FCUSTOMERLIST_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/CUSTOMERLIST_CDS/CUSTOMERLIST_CDS_Annotation.xml"
+                }
+            },
+            "CUSTOMERLIST_CDS": {
+                "uri": "sap/opu/odata/sap/ZCUSTOMERLIST_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "CUSTOMERLIST_CDS_Annotation"
+                    ],
+                    "localUri": "localService/CUSTOMERLIST_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "OFFERINGNAME_CDS_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FOFFERINGNAME_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/OFFERINGNAME_CDS/OFFERINGNAME_CDS_Annotation.xml"
+                }
+            },
+            "OFFERINGNAME_CDS": {
+                "uri": "sap/opu/odata/sap/ZOFFERINGNAME_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "OFFERINGNAME_CDS_Annotation"
+                    ],
+                    "localUri": "localService/OFFERINGNAME_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "OFFITEMDESC_cds_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FOFFITEMDESC_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/OFFITEMDESC_cds/OFFITEMDESC_cds_Annotation.xml"
+                }
+            },
+            "OFFITEMDESC_cds": {
+                "uri": "sap/opu/odata/sap/ZOFFITEMDESC_cds/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "OFFITEMDESC_cds_Annotation"
+                    ],
+                    "localUri": "localService/OFFITEMDESC_cds/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "MATWITHCHARAC_cds_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FMATWITHCHARAC_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/MATWITHCHARAC_cds/MATWITHCHARAC_cds_Annotation.xml"
+                }
+            },
+            "MATWITHCHARAC_cds": {
+                "uri": "sap/opu/odata/sap/ZMatWithCharac_cds/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "MATWITHCHARAC_cds_Annotation"
+                    ],
+                    "localUri": "localService/MATWITHCHARAC_cds/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "FIXEDPRICE_CDS_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FFIXEDPRICE_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/FIXEDPRICE_CDS/FIXEDPRICE_CDS_Annotation.xml"
+                }
+            },
+            "FIXEDPRICE_CDS": {
+                "uri": "sap/opu/odata/sap/ZFIXEDPRICE_CDS",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "FIXEDPRICE_CDS_Annotation"
+                    ],
+                    "localUri": "localService/FIXEDPRICE_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ADDONPRICE_CDS_Annotation": {
+                "uri": "destinations/T4X/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FACNIP%2FADDONPRICE_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ADDONPRICE_CDS/ADDONPRICE_CDS_Annotation.xml"
+                }
+            },
+            "ADDONPRICE_CDS": {
+                "uri": "sap/opu/odata/sap/ZADDONPRICE_CDS",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ADDONPRICE_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ADDONPRICE_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.114.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "subscriptionpricedetermination.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "calculate": {
+                "dataSource": "calculate",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "DISTRIBUTIONCHANNEL_CDS": {
+                "dataSource": "DISTRIBUTIONCHANNEL_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "DIVISIONLIST_CDS": {
+                "dataSource": "DIVISIONLIST_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "PLANTLIST_CDS": {
+                "dataSource": "PLANTLIST_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "CUSTOMERLIST_CDS": {
+                "dataSource": "CUSTOMERLIST_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "OFFERINGNAME_CDS": {
+                "dataSource": "OFFERINGNAME_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "OFFITEMDESC_cds": {
+                "dataSource": "OFFITEMDESC_cds",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "MATWITHCHARAC_cds": {
+                "dataSource": "MATWITHCHARAC_cds",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "FIXEDPRICE_CDS": {
+                "dataSource": "FIXEDPRICE_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ADDONPRICE_CDS": {
+                "dataSource": "ADDONPRICE_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "subscriptionpricedetermination.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RoutelandingPage",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetlandingPage"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetlandingPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "landingPage",
+                    "viewName": "landingPage"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "subscriptionpricedetermination.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+    "public": true,
+    "service": "subscriptionpricedetermination"
+}
+}

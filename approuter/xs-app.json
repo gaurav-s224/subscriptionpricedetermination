@@ -1,0 +1,12 @@
+{
+  "welcomeFile": "/subscriptionpricedeterminationtest/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/subscriptionpricedeterminationtest/(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+/* Enter your custom styles here */
+
+.customBtn.sapMBtnBase.sapMBtn.sapMBarChild {
+    background-color: #0A6ED1;
+    border-radius: 10px;
+}
+
+.customClr .sapMBtnContent {
+    color: white;
+
+}
+
+.genAIButton .sapMBtnIcon {
+    width: 24px !important;
+    height: 24px !important;
+    object-fit: contain;
+}
+
+.genAIStyledButton {
+    border: 2px solid #a32cc4 !important;
+    border-radius: 999px !important;
+    /* pill shape */
+    background-color: white !important;
+    color: #a32cc4 !important;
+    font-weight: bold !important;
+    padding: 6px 20px !important;
+    font-family: "Segoe UI", "Arial", sans-serif !important;
+    box-shadow: none !important;
+}
+
+.genAIStyledButton:hover {
+    background-color: #f5e9ff !important;
+}
+
+.genAiBtn {
+    width: fit-content !important;
+    min-width: 0 !important;
+}
+
+.offeringSection {
+    margin-left: 0; /* adjust to align with first card */
+}
+
+.offeringSectionTitle {
+    font-weight: 700; /* bold */
+    /* font-size: 0.8rem; */
+    margin-bottom: 0.5rem;
+    margin-left: 0.25rem; /* fine-tune so it lines up with card text */
+}
+
+.offeringCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.offeringCardLabel {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.offeringCardValue {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-top: 0.25rem;
+    color: #000;
+}
+
+.offeringCardIconBox {
+    background-color: #0A6ED1;
+    border-radius: 12px;
+    width: 48px;
+    height: 48px;
+}
+
+.discountCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+}
+
+.discountCardLabel {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #4a4a4a;
+}
+
+.discountCardValue {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #000;
+}
+
+.discountSliderCard {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+}
+
+.discountSliderLabel {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #4a4a4a;
+}
+
+.discountSliderValue .sapMInputBaseInner {
+    width: 7rem !important;
+}
+
+.discountSliderValue input {
+    border: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #000;
+    background: transparent;
+}
+
+.customerDetailsTitle {
+    font-weight: 700;
+}
+
+.customerDetailsLabel {
+    font-weight: bold !important;
+}
+
+
+

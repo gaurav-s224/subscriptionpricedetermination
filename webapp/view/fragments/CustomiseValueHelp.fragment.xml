@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc">
+	<Dialog id="configDialog" afterClose=".onDialogClose">
+		<ObjectHeader
+		iconDensityAware="false"
+		iconAlt="{configModel>/maktx}"
+		imageShape="Circle"
+		responsive="true"
+		title="{configModel>/maktx}"
+		class="sapUiResponsivePadding--header" >
+			<ObjectAttribute title="Product ID" text="{BaseModel>/matNumber}" />
+			<ObjectAttribute title="Base Value" id="baseVal" text="{BaseModel>/FixedPrice}" />
+			<ObjectAttribute id="totalPriceText" title="Add On Value" text="{BaseModel>/totalPrice}" />
+			<ObjectAttribute title="Sold-to-Party" text="{BaseModel>/custCode}" />
+			<ObjectAttribute title="Quantity" text="{configModel>/QUANT_VALUE}" />
+			<ObjectAttribute title="Date" text="{BaseModel>/currentDate}" />
+		</ObjectHeader>
+		<FlexBox id="configBox"
+            direction="Row" 
+            wrap="Wrap" 
+            alignItems="Center" 
+            justifyContent="Start"
+            width="100%">
+        </FlexBox>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="calcBtn" text="Save" press="onAddOnPrice" />
+				<Button id="cancelBtn" text="Close" press="onDialogClose" />
+			</Toolbar>
+		</footer>
+		
+	</Dialog>
+</core:FragmentDefinition>

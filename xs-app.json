@@ -1,0 +1,34 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/sap/(.*)$",
+      "target": "/sap/$1",
+      "destination": "T4X",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/get_business_percentage(.*)$",
+      "target": "/get_business_percentage$1",
+      "destination": "Contract_Profitability_GenAI_API", 
+      "authenticationType": "none",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/odata/v4/calculate/(.*)$",
+      "target": "/odata/v4/calculate/$1",
+      "destination": "SubscriptionPrice_CAP",
+      "authenticationType": "none",
+      "csrfProtection": false
+
+    },
+   
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

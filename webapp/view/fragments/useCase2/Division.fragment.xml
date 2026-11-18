@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="divisionDialog"
+		title="Divisions"
+		items="{BaseModel>/Division}"
+		search=".onSearch"
+		confirm=".onDivisionValueHelpClose">
+		<StandardListItem
+			icon=""
+			iconDensityAware="false"
+			iconInset="false"
+			title="{BaseModel>DivisionName}"
+			description="{BaseModel>Division}" />
+	</SelectDialog>
+</core:FragmentDefinition>
