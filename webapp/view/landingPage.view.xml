@@ -187,8 +187,17 @@
                                                 <Text text="{BaseModel>maktx}" />
                                                 <Text text="{BaseModel>matnr}" />
                                                 <Text text="{BaseModel>QUANT_VALUE}" />
-                                                <CheckBox selected="{= ${BaseModel>OPTIONAL} === 'X' ? false : true}" editable="{= ${BaseModel>OPTIONAL} === 'X' ? true : false}" />
-                                                <core:Icon src="sap-icon://wrench" press="onConfigureProduct"/>
+                                               <CheckBox
+    selected="{BaseModel>isSelected}"
+    enabled="{= ${BaseModel>OPTIONAL} === 'X' }"
+/>
+                                                <Button
+    icon="sap-icon://wrench"
+    type="Transparent"
+    tooltip="Configure Product"
+    enabled="{BaseModel>isSelected}"
+    press=".onConfigureProduct"
+/>
                                             </cells>
                                         </ColumnListItem>
                                     </items>

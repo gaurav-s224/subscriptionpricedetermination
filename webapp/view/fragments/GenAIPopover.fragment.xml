@@ -1,19 +1,39 @@
 <core:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:core="sap.ui.core">
-	<Popover
-		id="myPopover1"
-		title="GenAI Recommendation"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
-		placement="Right"
-		showHeader="true"
-        initialFocus="email">
-		<MessageStrip
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Popover
+        id="myPopover1"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+        placement="Right"
+        showHeader="true">
+
+        <customHeader>
+            <Toolbar>
+                <Title
+                    text="GenAI Recommendation"
+                    level="H4"
+                />
+
+                <ToolbarSpacer />
+
+                <Button
+                    icon="sap-icon://decline"
+                    type="Transparent"
+                    tooltip="Close"
+                    press=".onCloseGenAIPopover"
+                />
+            </Toolbar>
+        </customHeader>
+
+        <MessageStrip
             id="ms"
             text="{BaseModel>/GenAIRecommendationText}"
             type="Information"
             showCloseButton="false"
-            visible ="false"
-            class="sapUiSmallMarginTop" />
-	</Popover>
+            visible="false"
+            class="sapUiSmallMarginTop"
+        />
+
+    </Popover>
 </core:FragmentDefinition>
